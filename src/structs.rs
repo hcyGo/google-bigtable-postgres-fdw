@@ -223,9 +223,9 @@ impl From<*mut pg::DefElem> for FdwOpt {
             defname = CStr::from_ptr(def.defname);
             let val = def.arg as *mut pg::Value;
             assert!(!val.is_null());
-            let str_ptr = *(*val).val.str.as_mut();
-            assert!(!str_ptr.is_null());
-            str_val = CStr::from_ptr(str_ptr);
+            let str_ptr = (*val).val.str.as_mut();
+            assert!(!str_ptr.is_none());
+            str_val = CStr::from_ptr(str_ptr.unwrap());
         }
         FdwOpt {
             name: defname.to_str().unwrap().to_string(),

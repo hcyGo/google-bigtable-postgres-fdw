@@ -69,7 +69,7 @@ fn main() {
         // Do not generate unstable Rust code that
         // requires a nightly rustc and enabling
         // unstable features.
-        .no_unstable_rust()
+        //.unstable_rust()
         .emit_builtins()
         // The input header we would like to generate
         // bindings for.
