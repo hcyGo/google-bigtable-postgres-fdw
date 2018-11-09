@@ -373,8 +373,9 @@ fn cell_to_def(ls: &pg::List, idx: c_int) -> *mut pg::DefElem {
     unsafe {
         let cell_ptr = pg::list_nth_cell(ls, idx);
         assert!(!cell_ptr.is_null());
-        let cell = (*cell_ptr).data.ptr_value.as_mut();
-        *cell as *mut pg::DefElem
+        let cell = (*cell_ptr).data.ptr_value;
+        //*mut (cell.unwrap()) as *mut pg::DefElem
+        cell as *mut pg::DefElem
     }
 }
 
